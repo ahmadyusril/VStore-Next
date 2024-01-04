@@ -25,7 +25,7 @@ const Footer = () => {
 
           <FooterList>
             <h3 className="text-base font-bold mb-2">AMD Series</h3>
-            <Link href="#">RX 5000 Series</Link>
+            <Link href="#">RX 500 Series</Link>
             <Link href="#">RX 6000 Series</Link>
             <Link href="#">RX 7000 Series</Link>
           </FooterList>
