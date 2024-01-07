@@ -42,5 +42,26 @@ export const product = {
                 "https://res.cloudinary.com/dyzem32xh/image/upload/v1704355950/vstore/rogstrix4090white_l5uxoe.jpg",
         },
     ],
-    reviews: [],
+    reviews: [
+        {
+            id: "64a65a6158b470c6e06959ee",
+            userId: "6475af156bad4917456e6e1e",
+            productId: "64a4ebe300900d44bb50628a",
+            rating: 5,
+            comment: "good",
+            createdDate: "2023-07-06T06:08:33.067Z",
+            user: {
+                id: "6475af156bad4917456e6e1e",
+                name: "Charles",
+                email: "example@gmail.com",
+                emailVerified: null,
+                image:
+                    "https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c",
+                hashedPassword: null,
+                createdAt: "2023-05-30T08:08:53.979Z",
+                updatedAt: "2023-05-30T08:08:53.979Z",
+                role: "ADMIN",
+            },
+        },
+    ],
 }
