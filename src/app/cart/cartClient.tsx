@@ -4,12 +4,12 @@ import Button from "@/components/button";
 import Heading from "@/components/heading";
 import { useCart } from "@/hooks/useCart";
 import Link from "next/link";
-import { title } from "process";
 import { MdArrowBack } from "react-icons/md";
 import ItemContent from "./itemContent";
+import { formatPrice } from "@/components/Product/formatPrice";
 
 const CartClient = () => {
-  const { cartProducts } = useCart();
+  const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -49,12 +49,19 @@ const CartClient = () => {
       flex justify-between gap-4"
       >
         <div className="w-[90px]">
-          <Button label="Clear Cart" onClick={() => {}} small outline />
+          <Button
+            label="Clear Cart"
+            onClick={() => {
+              handleClearCart();
+            }}
+            small
+            outline
+          />
         </div>
         <div className="text-sm flex flex-col gap-1 items-start">
           <div className="flex justify-between w-full text-base font-semibold">
             <span>Subtotal</span>
-            <span>$ 100</span>
+            <span>{formatPrice(cartTotalAmount)}</span>
           </div>
           <p className="text-white">Taxes and Shipping calculate at checkout</p>
           <Button label="Checkout" onClick={() => {}} />

@@ -2,7 +2,10 @@
 
 import { formatPrice } from "@/components/Product/formatPrice";
 import { CartProductType } from "@/components/Product/productDetails";
+import SetQuantity from "@/components/Product/setQuantity";
 import { truncateText } from "@/components/truncateText";
+import { useCart } from "@/hooks/useCart";
+import Image from "next/image";
 import Link from "next/link";
 
 interface ItemContentProps {
@@ -10,6 +13,12 @@ interface ItemContentProps {
 }
 
 const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
+  const {
+    handleRemoveProductFromCart,
+    handleCartQtyIncrease,
+    handleCartQtyDecrease,
+  } = useCart();
+
   return (
     <div
       className="
@@ -26,7 +35,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
     >
       <div
         className="
-      cols-span-2 
+      col-span-2 
       justify-self-start
       flex
       gap-2
@@ -34,21 +43,46 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
       "
       >
         <Link href={`/product/${item.id}`}>
-          <div></div>
+          <div className="relative w-[70px] aspect-square">
+            <Image
+              src={item.selectedImg.image}
+              alt="{item.name}"
+              fill
+              className="object-contain"
+            />
+          </div>
         </Link>
         <div className="flex flex-col justify-between">
           <Link href={`/product/${item.id}`}>{truncateText(item.name)}</Link>
           <div>{item.selectedImg.color}</div>
           <div className="w-[70px]">
-            <button className="text-red-500 underline" onClick={() => {}}>
+            <button
+              className="text-red-500 underline"
+              onClick={() => {
+                handleRemoveProductFromCart(item);
+              }}
+            >
               Remove
             </button>
           </div>
         </div>
       </div>
-      <div>{formatPrice(item.price)}</div>
-      <div></div>
-      <div></div>
+      <div className="justify-self-center">{formatPrice(item.price)}</div>
+      <div className="justify-self-center">
+        <SetQuantity
+          cartCounter={true}
+          cartProduct={item}
+          handleQtyIncrease={() => {
+            handleCartQtyIncrease(item);
+          }}
+          handleQtyDecrease={() => {
+            handleCartQtyDecrease(item);
+          }}
+        />
+      </div>
+      <div className="justify-self-end font-semibold">
+        {formatPrice(item.price * item.quantity)}
+      </div>
     </div>
   );
 };
