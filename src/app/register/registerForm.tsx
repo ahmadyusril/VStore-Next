@@ -52,9 +52,8 @@ const RegisterForm = () => {
           }
         });
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Something went wrong");
-        console.log(error);
       })
       .finally(() => {
         setIsLoading(false);

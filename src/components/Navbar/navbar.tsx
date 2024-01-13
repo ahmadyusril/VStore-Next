@@ -2,6 +2,7 @@ import Link from "next/link";
 import Container from "../container";
 import { Rubik_Glitch } from "next/font/google";
 import CartCount from "./cartCount";
+import UserMenu from "./userMenu";
 
 const RubikGlitch = Rubik_Glitch({
   subsets: ["latin"],
@@ -32,7 +33,7 @@ const Navbar = () => {
             <div className="hidden md:block">Search</div>
             <div className="flex items-center gap-8 md-gap-12">
               <CartCount />
-              <div>UserMenu</div>
+              <UserMenu />
             </div>
           </div>
         </Container>
