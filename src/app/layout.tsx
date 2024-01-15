@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "The #1 Graphics Card Store",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;

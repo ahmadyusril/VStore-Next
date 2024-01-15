@@ -5,8 +5,15 @@ import Avatar from "../avatar";
 import { AiFillCaretDown } from "react-icons/ai";
 import Link from "next/link";
 import MenuItem from "./menuItem";
+import { signOut } from "next-auth/react";
+import BackDrop from "./backDrop";
+import { User } from "@prisma/client";
+import { SafeUser } from "@/types";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser: SafeUser | null;
+}
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -43,7 +50,7 @@ const UserMenu = () => {
             rounded-md
             shadow-md
             w-[170px]
-            bg-black
+            bg-yellow-500
             overflow-hidden
             top-12
             right-0
@@ -51,16 +58,41 @@ const UserMenu = () => {
             flex
             flex-col
             cursor-pointer
+
             "
           >
-            <div>
-              <Link href="orders">
-                <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
-              </Link>
-            </div>
+            {currentUser ? (
+              <div>
+                <Link href="/orders">
+                  <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
+                </Link>
+                <Link href="/admin">
+                  <MenuItem onClick={toggleOpen}>Admin Dashboard</MenuItem>
+                </Link>
+                <hr />
+                <MenuItem
+                  onClick={() => {
+                    toggleOpen();
+                    signOut();
+                  }}
+                >
+                  Logout
+                </MenuItem>
+              </div>
+            ) : (
+              <div>
+                <Link href="/login">
+                  <MenuItem onClick={toggleOpen}>Login</MenuItem>
+                </Link>
+                <Link href="/register">
+                  <MenuItem onClick={toggleOpen}>Register</MenuItem>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>
+      {isOpen ? <BackDrop onClick={toggleOpen} /> : null}
     </>
   );
 };

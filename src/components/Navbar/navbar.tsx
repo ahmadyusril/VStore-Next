@@ -3,13 +3,16 @@ import Container from "../container";
 import { Rubik_Glitch } from "next/font/google";
 import CartCount from "./cartCount";
 import UserMenu from "./userMenu";
+import { getCurrentUser } from "../../actions/getCurrentUser";
 
 const RubikGlitch = Rubik_Glitch({
   subsets: ["latin"],
   weight: ["400"],
 });
 
-const Navbar = () => {
+const Navbar = async () => {
+  const currentUser = await getCurrentUser();
+
   return (
     <div
       className="
@@ -33,7 +36,7 @@ const Navbar = () => {
             <div className="hidden md:block">Search</div>
             <div className="flex items-center gap-8 md-gap-12">
               <CartCount />
-              <UserMenu />
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </Container>
