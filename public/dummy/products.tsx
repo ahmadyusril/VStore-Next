@@ -50,7 +50,7 @@ export const products = [
       3.5 Slot
       AURA SYNC
       ARGB`,
-    price: 39900000,
+    price: 3200,
     brand: "ROG",
     category: "Nvidia",
     inStock: true,
@@ -75,7 +75,7 @@ export const products = [
     name: "SAPPHIRE NITRO+ AMD Radeon RX 7700 XT OC 12GB GDDR6",
     description:
       "The SAPPHIRE NITRO+ AMD Radeon RX 7700 XT is a high-performance graphics card. It has a boost clock up to 2599 MHz, 12GB DDR6 memory, and uses RDNA™ 3 Architecture. It supports high resolutions and has efficient cooling and power designs. It’s a great choice for gamers and professionals.",
-    price: 8899000,
+    price: 449,
     brand: "SAPPHIRE",
     category: "AMD",
     inStock: true,
@@ -115,7 +115,7 @@ export const products = [
     name: "Asus TUF Gaming GeForce GTX 1660 Super 6GB OC Edition GDDR6",
     description:
       "Powered by NVIDIA Turing with 1845 MHz Boost Clock, 1408 CUDA cores and overclocked 6GB GDDR6 memory in a 2. 7 slot form Factor.",
-    price: 2900000,
+    price: 108,
     brand: "Asus",
     category: "Nvidia",
     inStock: true,
@@ -175,9 +175,9 @@ export const products = [
     name: "Gigabyte GeForce RTX 3060 Gaming OC 12GB GDDR6",
     description:
       "The Gigabyte GeForce RTX 3060 Gaming OC 12GB GDDR6 is a graphics card that offers impressive performance for gaming and other tasks. It features NVIDIA Ampere Streaming Multiprocessors and 12GB GDDR6 memory.",
-    price: 5000000,
-    brand: "logitech",
-    category: "Accesories",
+    price: 403,
+    brand: "Gigabyte",
+    category: "Nvidia",
     inStock: true,
     images: [
       {
@@ -194,7 +194,7 @@ export const products = [
     name: "ASUS ROG STRIX RX 6600 XT OC EDITION 8GB DDR6 128BIT",
     description:
       "The ASUS ROG Strix Radeon RX 6600 XT OC Edition is a high-performance graphics card with 8GB GDDR6 memory. It features Axial-tech Fan Design, Super Alloy Power II, Dual BIOS switch, Auto-Extreme Technology, and a vented backplate. The card supports Full HD gaming, has an engine clock up to 2607 MHz in OC mode, and 2048 Stream Processors. It also has 1 HDMI 2.1 port and 3 DisplayPort 1.4a ports. ",
-    price: 3550000,
+    price: 650,
     brand: "ROG",
     category: "AMD",
     inStock: true,
