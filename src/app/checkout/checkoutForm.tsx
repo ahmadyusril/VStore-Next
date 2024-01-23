@@ -1,9 +1,15 @@
 "use client";
 
 import { formatPrice } from "@/components/Product/formatPrice";
+import Button from "@/components/button";
 import Heading from "@/components/heading";
 import { useCart } from "@/hooks/useCart";
-import { useElements, useStripe } from "@stripe/react-stripe-js";
+import {
+  PaymentElement,
+  AddressElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 interface CheckoutFormProps {
@@ -62,7 +68,23 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       <div className="mb-6">
         <Heading title="Enter your details to checkout" />
       </div>
+      <h2 className="font-semibold mb-2">Address Information</h2>
+      <AddressElement
+        options={{
+          mode: "shipping",
+          allowedCountries: ["US", "ID"],
+        }}
+      />
       <h2 className="font-semibold mt-4 mb-2">Payment Information</h2>
+      <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
+      <div className="py-4 text-center text-white text-xl font-bold">
+        Total: {formattedPrice}
+      </div>
+      <Button
+        label={isLoading ? "Processing" : "Pay"}
+        disabled={isLoading || !stripe || !elements}
+        onClick={() => {}}
+      />
     </form>
   );
 };

@@ -4,9 +4,7 @@ import { NextResponse } from "next/server";
 import { CartProductType } from "@/components/Product/productDetails";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-    apiVersion: "2023-10-16",
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 const calculateOrderAmount = (items: CartProductType[]) => {
     const totalPrice = items.reduce((acc, item) => {
@@ -70,7 +68,7 @@ export async function POST(request: Request) {
                 return NextResponse.json({ error: "Invalid Payment Intent" }, { status: 400 })
             }
 
-            return NextResponse.json({ updated_intent });
+            return NextResponse.json({ paymentIntent: updated_intent });
         }
 
 

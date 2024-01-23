@@ -7,9 +7,17 @@ import Link from "next/link";
 import { MdArrowBack } from "react-icons/md";
 import ItemContent from "./itemContent";
 import { formatPrice } from "@/components/Product/formatPrice";
+import { SafeUser } from "@/types";
+import { useRouter } from "next/navigation";
 
-const CartClient = () => {
+interface CartClientProps {
+  currentUser: SafeUser | null;
+}
+
+const CartClient: React.FC<CartClientProps> = ({ currentUser }) => {
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
+
+  const router = useRouter();
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -64,7 +72,13 @@ const CartClient = () => {
             <span>{formatPrice(cartTotalAmount)}</span>
           </div>
           <p className="text-white">Taxes and Shipping calculate at checkout</p>
-          <Button label="Checkout" onClick={() => {}} />
+          <Button
+            label={currentUser ? "Checkout" : "Login to checkout"}
+            outline={currentUser ? false : true}
+            onClick={() => {
+              currentUser ? router.push("/checkout") : router.push("/login");
+            }}
+          />
           <Link
             href={"/"}
             className="

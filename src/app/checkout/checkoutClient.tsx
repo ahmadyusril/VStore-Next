@@ -9,8 +9,9 @@ import toast from "react-hot-toast";
 import CheckoutForm from "./checkoutForm";
 import Button from "@/components/button";
 
+// Publishable key for Stripe
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABEL_KEY as string
+  "pk_test_51OaBrfAjGYmKuKBJtIORpI6Mn2N10Pys4zSVtEf4UhpkXTHq2MUj7eZMo4Dy5DOuQG4sFj4hZJW2K6LKZzb35r2800eAycqxBr"
 );
 
 const CheckoutClient = () => {
@@ -31,7 +32,7 @@ const CheckoutClient = () => {
       setLoading(true);
       setError(false);
 
-      fetch("api/create-payment-intent", {
+      fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -53,7 +54,7 @@ const CheckoutClient = () => {
         })
         .catch((error) => {
           setError(true);
-          console.log("Error", error.message);
+          console.log("Error", error);
           toast.error("Something went wrong while checkout");
         });
     }
@@ -80,7 +81,7 @@ const CheckoutClient = () => {
           />
         </Elements>
       )}
-      {loading && <div className="text-center">"Loading Checkout...</div>}
+      {loading && <div className="text-center">Loading Checkout...</div>}
       {error && (
         <div className="text-center text-rose-500">
           "Something went wrong..."
