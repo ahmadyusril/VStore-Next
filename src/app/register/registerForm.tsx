@@ -1,6 +1,6 @@
 "use client";
 
-import Input from "@/components/Input/input";
+import Input from "@/components/Inputs/input";
 import Button from "@/components/button";
 import Heading from "@/components/heading";
 import Link from "next/link";
