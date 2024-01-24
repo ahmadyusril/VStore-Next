@@ -2,6 +2,8 @@
 
 import { ImageType } from "@/app/admin/add-products/addProductForm";
 import { useCallback, useEffect, useState } from "react";
+import SelectImage from "./selectImage";
+import Button from "../button";
 
 interface SelectColorProps {
   item: ImageType;
@@ -40,8 +42,44 @@ const SelectColor: React.FC<SelectColorProps> = ({
     }
   }, []);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-1 overvlow-y-auto border-b-[1.2px] border-white items-center p-2">
-      <div className="flex flex-row gap-2 items-center h-[60px]"></div>
+    <div className="grid grid-cols-1 overvlow-y-auto border-b-[1.2px] border-white items-center p-2">
+      <div className="flex flex-row gap-2 items-center h-[60px]">
+        <input
+          id={item.color}
+          type="checkbox"
+          checked={isSelected}
+          onChange={handleCheck}
+          className="cursor-pointer"
+        />
+        <label htmlFor="{item.color}" className="font-medium cursor-pointer">
+          {item.color}
+        </label>
+      </div>
+      <>
+        {isSelected && !file && (
+          <div className="col-span-2 text-center">
+            <SelectImage item={item} handleFileChange={handleFileChange} />
+          </div>
+        )}
+        {file && (
+          <div className="flex flex-row gap-2 text-sm col-span-2 items-center justify-center">
+            <p>{file?.name}</p>
+            <div className="w-[70px]">
+              <Button
+                label="Cancel"
+                small
+                outline
+                onClick={() => {
+                  setFile(null);
+                  removeImageFromState(item);
+                }}
+              />
+            </div>
+          </div>
+        )}
+      </>
     </div>
   );
 };
+
+export default SelectColor;

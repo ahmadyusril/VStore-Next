@@ -19,7 +19,7 @@ const Navbar = async () => {
         sticky
         top-0
         w-full
-        bg-black
+        bg-gradient-to-b from-sky-500 to-sky-700
         z-30
         shadow-sm
         "
