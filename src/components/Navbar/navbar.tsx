@@ -4,6 +4,8 @@ import { Rubik_Glitch } from "next/font/google";
 import CartCount from "./cartCount";
 import UserMenu from "./userMenu";
 import { getCurrentUser } from "../../actions/getCurrentUser";
+import Categories from "./categories";
+import SearchBar from "../Search/searchBar";
 
 const RubikGlitch = Rubik_Glitch({
   subsets: ["latin"],
@@ -33,7 +35,9 @@ const Navbar = async () => {
             >
               Vanguard Store
             </Link>
-            <div className="hidden md:block">Search</div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex items-center gap-8 md-gap-12">
               <CartCount />
               <UserMenu currentUser={currentUser} />
@@ -41,6 +45,7 @@ const Navbar = async () => {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   );
 };
